@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Walutowy | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+          <p>Klasa 1p (2024/2025)</p>
+          Kalkulator_XXL_extra++<br />
+          Kalkulator walutowy
+        </div>
+        <div id="display">
+          <marquee behavior="" direction="">Wybierz walute i przelicz</marquee>
+        </div>
+        <div id="currency-calculator">
+          <label for="amount">Kwota:</label>
+          <input type="number" id="amount" placeholder="Wpisz kwotę" /><br />
+
+          <label for="from-currency">Waluta źródłowa:</label>
+          <select id="from-currency">
+            <option value="PLN">PLN</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+
+            <!-- Możesz dodać więcej walut -->
+          </select>
+          <br />
+
+          <label for="to-currency">Waluta docelowa:</label>
+          <select id="to-currency">
+            <option value="PLN">PLN</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+
+            <!-- Możesz dodać więcej walut -->
+          </select>
+          <br />
+          <button id="convert-btn">Przelicz</button>
+
+          <p id="result"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var normalText = "wybierz funkcje kalkulatora";
+
+      document
+        .getElementById("convert-btn")
+        .addEventListener("click", convertCurrency);
+
+      async function convertCurrency() {
+        const amount = document.getElementById("amount").value;
+        const fromCurrency = document.getElementById("from-currency").value;
+        const toCurrency = document.getElementById("to-currency").value;
+
+        if (!amount || isNaN(amount) || amount <= 0) {
+          alert("Proszę wprowadzić prawidłową kwotę!");
+          return;
+        }
+
+        const url = `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          const rate = data.rates[toCurrency];
+          const convertedAmount = (amount * rate).toFixed(2);
+
+          document.getElementById("display").textContent =
+            "Wynik: " + `${convertedAmount} ${toCurrency}`;
+        } catch (error) {
+          alert("Błąd podczas pobierania kursów walut!");
+        }
+      }
+
+      window.onload = () => {
+        document.getElementById("kalk").style.animation = "display 1s forwards";
+      };
+    </script>
+  </body>
+</html>

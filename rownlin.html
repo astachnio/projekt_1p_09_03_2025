@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator równań liniowych | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+          <p>Klasa 1p (2024/2025)</p> 
+          Kalkulator_XXL_extra++<br />
+          Kalkulator równań liniowych
+        </div>
+        <div id="display">ax + b = 0</div>
+        <div id="buttons">
+          <div id="inputValues">
+            Wprowadź a:
+            <input type="number" id="a" placeholder="Podaj wartość a" /><br />
+            Wprowadź b:
+            <input type="number" id="b" placeholder="Podaj wartość b" />
+          </div>
+          <br />
+          <div
+            id="button"
+            onclick="obliczRownanie()"
+            style="
+              font-size: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            Oblicz
+          </div>
+          <div
+            id="button"
+            onclick="clearInput()"
+            style="
+              font-size: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            Wyczyść
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function obliczRownanie() {
+        const a = parseFloat(document.getElementById("a").value);
+        const b = parseFloat(document.getElementById("b").value);
+        const display = document.getElementById("display");
+        if (isNaN(a) || isNaN(b)) {
+          alert("Prosze podać prawidłowe wartości dla a i b.");
+          return;
+        }
+        if (a === 0) {
+          if (b === 0) {
+            display.textContent = "Nieskonczona liczba rozwiazan";
+          } else {
+            display.textContent = "Brak rozwiązania (a = 0, ale b ≠ 0)";
+          }
+        } else {
+          let x = -b / a;
+          x = x.toFixed(2);
+          display.textContent = `Wynik: x = ${x}`;
+        }
+      }
+
+      function clearInput() {
+        document.getElementById("a").value = "";
+        document.getElementById("b").value = "";
+        document.getElementById("display").textContent = "x = ?";
+      }
+      window.onload = () => {
+        document.getElementById("kalk").style.animation = "display 1s forwards";
+      };
+    </script>
+  </body>
+</html>

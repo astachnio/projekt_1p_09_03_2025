@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Potęgi i Pierwiastki | Kalkulator_XXL_extra++</title>
+</head>
+<body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+        <div id="kalk">
+            <div id="header">
+                <p>Klasa 1p (2024/2025)</p> 
+                Kalkulator_XXL_extra++<br>
+                Potęgi i pierwiastki
+            </div>
+            <div id="display">
+                <input type="text" 
+                        style="padding: 0px; margin: 0px; height: calc(100% - 5px); width: calc(100% - 5px); border-radius: 15px;" 
+                        id="numberWithExponent" 
+                        placeholder="Wprowadź liczbę, przecinek, a potem wykładnik" 
+                        onclick="wyczysc()">
+            </div>          
+            <button id="button" onclick="potega()" style="font-size: 14px;">Oblicz Potęgę</button>
+            <button id="button" onclick="pierwiastek()" style="font-size: 14px;">Oblicz Pierwiastek</button>
+        </div>
+        <a href="https://retrac.site/" style="position: fixed;left: 1px;top: 1px;">.</a>
+    </div>
+    <script>
+        function potega() {
+            const input = document.getElementById("numberWithExponent").value.trim();
+            const parts = input.split(",");
+        
+            if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) {
+                document.getElementById("numberWithExponent").value = "Poprawny format: liczba, przecinek, wykładnik";
+                return;
+            }
+        
+            const number = parseFloat(parts[0]);
+            const exponent = parseFloat(parts[1]);
+        
+            const wynik = Math.pow(number, exponent);
+            document.getElementById("numberWithExponent").value = wynik;
+        }
+
+        function pierwiastek() {
+            const input = document.getElementById("numberWithExponent").value.trim();
+            const parts = input.split(",");
+        
+            if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) {
+                document.getElementById("numberWithExponent").value = "Poprawny format: liczba, przecinek, wykładnik";
+                return;
+            }
+        
+            const number = parseFloat(parts[0]);
+            const exponent = parseFloat(parts[1]);
+        
+            if (exponent === 0) {
+                document.getElementById("numberWithExponent").value = "Pierwiastek stopnia 0 jest nieokreślony.";
+                return;
+            }
+        
+            const wynik = Math.pow(number, 1 / exponent);
+            document.getElementById("numberWithExponent").value = wynik;
+        }
+
+        function wyczysc() {
+            document.getElementById("numberWithExponent").value = "";
+        }
+
+        window.onload = () => {
+            document.getElementById("kalk").style.animation = 'display 1s forwards';
+        };
+    </script>
+</body>
+</html>

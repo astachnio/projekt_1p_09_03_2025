@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Logarytmów | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style2.css" />
+    <style>
+      #buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+      }
+
+      .button {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-size: 25px;
+        text-align: center;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 2px solid white;
+      }
+
+      .button:hover {
+        background-color: rgb(53, 53, 53);
+      }
+
+      .logarytm,
+      .rowne {
+        width: 80px;
+        height: 50px;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        border-radius: 50px;
+        border: 2px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .logarytm {
+        background-color: rgb(199, 65, 60);
+      }
+      .rowne {
+        background-color: rgb(238, 118, 5);
+      }
+
+      .logarytm:hover,
+      .rowne:hover {
+        background-color: rgb(53, 53, 53);
+      }
+
+      .special-buttons {
+        display: flex;
+        gap: 15px;
+      }
+      .przelacz {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(100, 100, 255);
+        color: white;
+        font-size: 25px;
+        text-align: center;
+        border-radius: 25px;
+        border: 2px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .przelacz:hover {
+        background-color: rgb(53, 53, 150);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="refresh"><a onclick="window.location.reload();">⟳</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+            <p>Klasa 1p (2024/2025)</p> 
+          Kalkulator_XXL_extra++<br />
+          Kalkulator Logarytmów
+        </div>
+
+        <div id="display">
+          <marquee behavior="" direction=""
+            >Kliknij <b>log</b>, nastepnie wpisz podstawe logarytmu, kliknij
+            <b>→</b>, wpisz liczbe logarytmowana i kliknij <b>=</b></marquee
+          >
+        </div>
+        <div id="buttons">
+          <div>
+            <div class="button" style="background-color: red; color: black">
+              C
+            </div>
+            <div class="button">1</div>
+            <div class="button">4</div>
+            <div class="button">7</div>
+          </div>
+          <div>
+            <div class="button" style="background-color: red; color: black">
+              DEL
+            </div>
+            <div class="button">2</div>
+            <div class="button">5</div>
+            <div class="button">8</div>
+            <div class="button">0</div>
+          </div>
+          <div>
+            <div class="button nodisplay" style="cursor: default"></div>
+            <div class="button">3</div>
+            <div class="button">6</div>
+            <div class="button">9</div>
+            <div class="button">.</div>
+          </div>
+        </div>
+        <div class="special-buttons">
+          <div class="logarytm">log</div>
+          <div class="przelacz">→</div>
+          <div class="rowne">=</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const display = document.getElementById("display");
+      const buttons = document.querySelectorAll(".button");
+      const logButton = document.querySelector(".logarytm");
+      const equalsButton = document.querySelector(".rowne");
+      const switchButton = document.querySelector(".przelacz");
+
+      let input = "";
+      let logBase = "";
+      let logArgument = "";
+      let logMode = false;
+      let awaitingBase = true;
+
+      function updateDisplay() {
+        if (logMode) {
+          display.textContent = `log_${logBase || "?"}(${logArgument || "?"})`;
+        } else {
+          display.textContent = input || "0";
+        }
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.textContent.trim();
+
+          if (value === "C") {
+            input = "";
+            logBase = "";
+            logArgument = "";
+            logMode = false;
+            awaitingBase = true;
+          } else if (value === "DEL") {
+            if (logMode) {
+              if (awaitingBase) {
+                logBase = logBase.slice(0, -1);
+              } else {
+                logArgument = logArgument.slice(0, -1);
+              }
+            } else {
+              input = input.slice(0, -1);
+            }
+          } else if (value === ".") {
+            if (logMode) {
+              if (awaitingBase && !logBase.includes(".")) {
+                logBase += value;
+              } else if (!awaitingBase && !logArgument.includes(".")) {
+                logArgument += value;
+              }
+            } else if (!input.includes(".")) {
+              input += value;
+            }
+          } else if (logMode) {
+            if (awaitingBase) {
+              logBase += value;
+            } else {
+              logArgument += value;
+            }
+          } else {
+            input += value;
+          }
+
+          updateDisplay();
+        });
+      });
+
+      logButton.addEventListener("click", () => {
+        logMode = true;
+        awaitingBase = true;
+        logBase = "";
+        logArgument = "";
+        updateDisplay();
+      });
+
+      switchButton.addEventListener("click", () => {
+        if (logMode) {
+          awaitingBase = false;
+        }
+        updateDisplay();
+      });
+
+      equalsButton.addEventListener("click", () => {
+        if (logMode && logArgument) {
+          const base = logBase ? parseFloat(logBase) : 10; // Domyślnie logarytm dziesiętny
+          const argument = parseFloat(logArgument);
+
+          if (base > 0 && base !== 1 && argument > 0) {
+            input = (Math.log(argument) / Math.log(base)).toString();
+          } else {
+            input = "ERROR";
+          }
+          logMode = false;
+          logBase = "";
+          logArgument = "";
+        }
+        updateDisplay();
+      });
+    </script>
+  </body>
+</html>

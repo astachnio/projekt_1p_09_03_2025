@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="kalk">
+            <div id="header">
+                <p>Klasa 1p (2024/2025)</p> 
+                Kalkulator_XXL_extra++<br>
+                Strona główna                
+            </div>
+            <div id="display"><marquee behavior="" direction="">Wybierz funkcje kalkulatora</marquee></div>
+            <div id="buttons">
+                <div id="button" onmouseenter="displayText('Kalkulator prosty')" onmouseleave="displayText(normalText)" onclick="openWindow('prosty.html')">1</div>
+                <div id="button" onmouseenter="displayText('Kalkulator poteg i pierwiastkow')" onmouseleave="displayText(normalText)" onclick="openWindow('potegipierwiastki.html')">2</div>
+                <div id="button" onmouseenter="displayText('Kalkulator pol figur')" onmouseleave="displayText(normalText)" onclick="openWindow('polafigur.html')">3</div>
+                <div id="button" onmouseenter="displayText('Kalkulator rownan liniowych')" onmouseleave="displayText(normalText)" onclick="openWindow('rownlin.html')">4</div>
+                <div id="button" onmouseenter="displayText('Kalkulator BMI')" onmouseleave="displayText(normalText)" onclick="openWindow('bmi.html')">5</a></div>
+                <div id="button" onmouseenter="displayText('Kalkulator objetosci bryl')" onmouseleave="displayText(normalText)" onclick="openWindow('objetosci_bryl.html')">6</a></div>
+                <div id="button" onmouseenter="displayText('Kalkulator walutowy')" onmouseleave="displayText(normalText)" onclick="openWindow('waluty.html')">7</a></div>
+                <div id="button" onmouseenter="displayText('Kalkulator logarytmow')" onmouseleave="displayText(normalText)" onclick="openWindow('logarytm.html')">8</a></div>
+                <div id="button" onmouseenter="displayText('Zespol programistow')" onmouseleave="displayText(normalText)" onclick="openWindow('team.html')">9</a></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    
+    <script>
+        var normalText = "wybierz funkcje kalkulatora";
+            
+        function displayText(text) {
+            if (text === normalText) {
+                document.getElementById("display").innerHTML = '<marquee behavior="" direction="">'+normalText+'</marquee>';
+            } else {
+                document.getElementById("display").innerHTML = text;
+            }
+        }
+        window.onload = () => {
+            document.getElementById("kalk").style.animation = 'display 1s forwards';
+        }
+        function openWindow(windowName) {
+            window.open(windowName, "_parent")
+        }
+        
+    </script>
+</body>
+</html>

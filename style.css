@@ -1,0 +1,218 @@
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  width: 100%;
+}
+#back {
+  background-color: red;
+  border-radius: 37.5px;
+  height: 75px;
+  width: 75px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#back a {
+  padding: 12px;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  text-decoration: none;
+}
+#back:hover {
+  background-color: rgb(211, 0, 0);
+}
+.nodisplay {
+  opacity: 0;
+  cursor: default;
+}
+#kalk {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: 650px;
+  width: 400px;
+  background-color: rgb(183, 183, 183);
+  border-radius: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 3px solid rgb(0, 0, 0);
+  box-shadow: 3px 4px 20px rgb(0, 0, 0);
+}
+#kalk #buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+#header {
+  margin: 12px;
+  height: 100px;
+  font-size: 25px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+#header p {
+  font-weight: bold;
+}
+@font-face {
+  font-family: "digital-7";
+  src: url("font/digital-7.ttf") format("truetype");
+}
+#display {
+  font-family: "digital-7", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  background-color: white;
+  text-align: center;
+  height: 75px;
+  width: 80%;
+  border-radius: 15px;
+  text-wrap: wrap;
+  border: 3px solid white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+#display marquee {
+  font-size: 70px;
+}
+#button {
+  width: 80px;
+  height: 80px;
+  background-color: rgb(122, 122, 122);
+  color: white;
+  font-size: 64px;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#button:hover {
+  background-color: rgb(53, 53, 53);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+#button a {
+  color: white;
+  text-decoration: none;
+}
+@keyframes display {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ------ Kalkulator walutowy------- */
+#currency-calculator {
+  padding: 20px;
+  font-size: 16pt;
+  line-height: 1.6;
+}
+
+#convert-btn {
+  font-size: 16pt;
+  width: 100%;
+}
+
+#result {
+  font-size: 18pt;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Kalkulator równń liniowych */
+
+#buttons {
+  padding: 20px;
+}
+
+/* Kalkulator BMI */
+#bmiForm button {
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  background-color: rgb(122, 122, 122);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#bmiForm button:hover {
+  background-color: #5f8861;
+}
+
+#bmiForm button:active {
+  background-color: #3e8e41;
+  transform: scale(0.98);
+}
+
+#bmiForm input {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#bmiForm input:hover {
+  border-color: #4caf50;
+}
+
+#bmiForm input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+  outline: none;
+}
+
+/* --------> Dodano <-------------*/
+#displayCategory {
+  font-size: 26px;
+}
+
+/* Pola figur */
+.shapeInputs {
+  width: 100%;
+  display: none;
+  padding: 10px;
+}
+
+.shapeInputs input {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.shapeInputs button {
+  padding: 10px 20px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.shapeInputs button:hover {
+  background-color: rgb(53, 53, 53);
+}

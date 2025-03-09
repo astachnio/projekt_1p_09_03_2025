@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Walutowy | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 700px;
+        width: 100%;
+      }
+      #kalk {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        height: 600px;
+        width: 60%;
+        background-color: rgb(183, 183, 183);
+        border-radius: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 3px solid rgb(0, 0, 0);
+        box-shadow: 3px 4px 20px rgb(0, 0, 0);
+      }
+      #zespol {
+        text-align: center;
+      }
+      img {
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+          <p>Klasa 1p (2024/2025)</p>
+          Kalkulator_XXL_extra++<br />
+        </div>
+        <div id="display">
+          <marquee behavior="" direction="">Zespol programistow</marquee>
+        </div>
+
+        <div id="zespol">
+          <img
+            src="./ksztalty/tech_progr_768x434.png"
+            alt="Zespół programistów"
+          />
+        </div>
+      </div>
+    </div>
+    <script>
+      window.onload = () => {
+        document.getElementById("kalk").style.animation = "display 1s forwards";
+      };
+    </script>
+  </body>
+</html>

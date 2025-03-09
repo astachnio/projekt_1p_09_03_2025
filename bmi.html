@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator BMI | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+          <p>Klasa 1p (2024/2025)</p> 
+          Kalkulator_XXL_extra++<br />
+          Kalkulator BMI
+        </div>
+
+        <div id="display">
+          <marquee behavior="scroll" direction="left">Wpisz dane</marquee>
+          <div id="displayBMI"></div>
+          <div id="displayCategory"></div>
+        </div>
+
+        <div id="bmiForm">
+          <label for="weight">Waga (kg):</label>
+          <input type="number" id="weight" placeholder="np. 70" />
+          <label for="height">Wzrost (cm):</label>
+          <input type="number" id="height" placeholder="np. 175" />
+          <button onclick="calculateBMI()">Oblicz BMI</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        var weight = parseFloat(document.getElementById("weight").value);
+        var height = parseFloat(document.getElementById("height").value);
+
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+          alert("Proszę podać poprawne dane.");
+          return;
+        }
+
+        height = height / 100;
+        var bmi = weight / (height * height);
+        var bmiFixed = bmi.toFixed(2);
+
+        document.getElementById("display").innerHTML =
+          '<div id="displayBMI"></div><div id="displayCategory"></div>';
+        document.getElementById(
+          "displayBMI"
+        ).innerHTML = `Twoje BMI: ${bmiFixed}`;
+
+        var category = "";
+        if (bmi < 18.5) {
+          category = "Niedowaga";
+        } else if (bmi < 24.9) {
+          category = "Waga normalna";
+        } else if (bmi < 29.9) {
+          category = "Nadwaga";
+        } else {
+          category = "Otyłość";
+        }
+
+        document.getElementById("displayCategory").textContent =
+          "Kategoria: " + category;
+      }
+
+      window.onload = () => {
+        document.getElementById("kalk").style.animation = "display 1s forwards";
+      };
+    </script>
+  </body>
+</html>

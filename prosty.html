@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Prosty | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="back"><a href="index.html" >X</a></div>
+    <div id="main">
+        <div id="kalk">
+            <div id="header">
+                <p>Klasa 1p (2024/2025)</p> 
+                Kalkulator_XXL_extra++<br>
+                Kalkulator Prosty
+            </div>
+            <div id="display"></div>
+            <div id="buttons">
+                <div id="button" onclick="cleara()">CE</div>
+                <div id="button" onclick="dzialanie('+')">+</div>
+                <div id="button" onclick="dzialanie('-')">-</div>
+                <div id="button" onclick="dzialanie('*')">*</div>
+                <div id="button" onclick="dzialanie('/')">/</div>
+                <div id="button" onclick="dzialanie('%')">%</div>
+                <div id="button" onclick="dzialanie('=')">=</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let a = "", b = "", wynik = 0;
+        
+        function cleara() {
+            a = "";
+            wynik = 0;
+            document.getElementById('display').innerText = "";
+        }
+        
+        function clearb() {
+            a = "";
+            document.getElementById('display').innerText = "";
+        }
+        
+        function dzialanie(znakDzialanie) {
+            if (znakDzialanie === "=") {
+                if (b === "+") {
+                    wynik += parseFloat(a);
+                } else if (b === "-") {
+                    wynik -= parseFloat(a);
+                } else if (b === "*") {
+                    wynik *= parseFloat(a);
+                } else if (b === "/") {
+                    if (a !== "0") {
+                        wynik /= parseFloat(a);
+                    } else {
+                        wynik = "Error";
+                    }
+                } else if (b === "%") {
+                    wynik %= parseFloat(a);
+                } else {
+                    wynik = parseFloat(a);
+                }
+                a = "";
+                b = "";
+                document.getElementById('display').innerText = wynik;
+            } else {
+                if (a !== "") {
+                    if (wynik === 0) {
+                        wynik = parseFloat(a);
+                    }
+                }
+                b = znakDzialanie;
+                a = "";
+                document.getElementById('display').innerText = b;
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key >= '0' && event.key <= '9') {
+                a += event.key;
+                document.getElementById('display').innerText = a;
+            } else if (event.key === '.' && !a.includes('.')) {
+                // Dodaj kropkę tylko jeśli jeszcze jej nie ma
+                a += event.key;
+                document.getElementById('display').innerText = a;
+            } else if (event.key === 'Backspace') {
+                a = a.slice(0, -1);
+                document.getElementById('display').innerText = a;
+            } else if (['+', '-', '*', '/', '%'].includes(event.key)) {
+                dzialanie(event.key);
+            } else if (event.key === 'Enter') {
+                dzialanie("=");
+            }
+        });
+        window.onload = () => {
+            document.getElementById("kalk").style.animation = 'display 1s forwards';
+        };
+    </script>
+</body>
+</html>

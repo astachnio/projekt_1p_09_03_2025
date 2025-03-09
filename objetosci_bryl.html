@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Kalkulator_XXL_extra++</title>
+    <link rel="stylesheet" href="objetosci_bryl.css" />
+  </head>
+
+  <body>
+    <div id="back"><a href="index.html">X</a></div>
+    <div id="main">
+      <div id="kalk">
+        <div id="header">
+          <p>Klasa 1p (2024/2025)</p>
+          Kalkulator_XXL_extra++<br />
+          Kalkulator objętości brył
+        </div>
+
+        <div id="display">Wybierz typ obliczen</div>
+
+        <div id="content">
+          <div id="buttons">
+            <div
+              class="button"
+              onmouseenter="displayText('Objetosc prostopadloscianu')"
+              onmouseleave="displayText(normalText)"
+            >
+              <a
+                href="javascript:void(0)"
+                onclick="openCalculator('prostopadloscian')"
+                >Prostopadłościan</a
+              >
+            </div>
+            <div
+              class="button"
+              onmouseenter="displayText('Objetosc stozka')"
+              onmouseleave="displayText(normalText)"
+            >
+              <a href="javascript:void(0)" onclick="openCalculator('stozek')"
+                >Stożek</a
+              >
+            </div>
+            <div
+              class="button"
+              onmouseenter="displayText('Objetosc walca')"
+              onmouseleave="displayText(normalText)"
+            >
+              <a href="javascript:void(0)" onclick="openCalculator('walec')"
+                >Walec</a
+              >
+            </div>
+            <div
+              class="button"
+              onmouseenter="displayText('Objetosc kuli')"
+              onmouseleave="displayText(normalText)"
+            >
+              <a href="javascript:void(0)" onclick="openCalculator('kula')"
+                >Kula</a
+              >
+            </div>
+          </div>
+
+          <div id="results">
+            <div id="form">
+              <div id="inputs0">
+                <p>Dla której bryły chcesz obliczyć objętość?</p>
+              </div>
+
+              <div id="inputs_p" style="display: none">
+                <p><i>Objętość prostopadłościanu</i></p>
+                <label for="paramA">Podaj długość krawędzi A:</label>
+                <input
+                  type="number"
+                  id="paramA"
+                  placeholder="Wartość parametru A"
+                  required
+                /><br />
+                <label for="paramB">Podaj długość krawędzi B:</label>
+                <input
+                  type="number"
+                  id="paramB"
+                  placeholder="Wartość parametru B"
+                  required
+                /><br />
+                <label for="paramH">Podaj wysokość bryły H:</label>
+                <input
+                  type="number"
+                  id="paramH"
+                  placeholder="Wartość parametru H"
+                  required
+                /><br /><br />
+                <button onclick="calculateVolume()">Oblicz objętość</button>
+                <button onclick="Wyczysc()">Wyczyść</button>
+              </div>
+
+              <div id="inputs_s" style="display: none">
+                <p><i>Objętość stożka</i></p>
+                <label for="paramR">Podaj promień podstawy R:</label>
+                <input
+                  type="number"
+                  id="paramR"
+                  placeholder="Wartość parametru R"
+                  required
+                /><br />
+                <label for="paramH_s">Podaj wysokość bryły H:</label>
+                <input
+                  type="number"
+                  id="paramH_s"
+                  placeholder="Wartość parametru H"
+                  required
+                /><br /><br />
+                <button onclick="calculateVolume()">Oblicz objętość</button>
+                <button onclick="Wyczysc()">Wyczyść</button>
+              </div>
+
+              <div id="inputs_w" style="display: none">
+                <p><i>Objętość walca</i></p>
+                <label for="paramR_w">Podaj promień podstawy R:</label>
+                <input
+                  type="number"
+                  id="paramR_w"
+                  placeholder="Wartość parametru R"
+                  required
+                /><br />
+                <label for="paramH_w">Podaj wysokość bryły H:</label>
+                <input
+                  type="number"
+                  id="paramH_w"
+                  placeholder="Wartość parametru H"
+                  required
+                /><br /><br />
+                <button onclick="calculateVolume()">Oblicz objętość</button>
+                <button onclick="Wyczysc()">Wyczyść</button>
+              </div>
+
+              <div id="inputs_k" style="display: none">
+                <p><i>Objętość kuli</i></p>
+                <label for="paramR_k">Podaj promień R:</label>
+                <input
+                  type="number"
+                  id="paramR_k"
+                  placeholder="Wartość parametru R"
+                  required
+                /><br /><br />
+                <button onclick="calculateVolume()">Oblicz objętość</button>
+                <button onclick="Wyczysc()">Wyczyść</button>
+              </div>
+            </div>
+            <div id="result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var normalText = "wybierz funkcje kalkulatora";
+      var figureType = "";
+
+      function openCalculator(type) {
+        figureType = type;
+        document.getElementById("display").innerHTML =
+          "Podaj parametry dla " + type;
+        document.getElementById("form").classList.remove("nodisplay");
+        document.getElementById("result").innerHTML = "";
+
+        // Resetujemy ukryte parametry
+        document.getElementById("inputs0").style.display = "none";
+        document.getElementById("paramA").value = "";
+        document.getElementById("paramB").value = "";
+        document.getElementById("paramH").value = "";
+        document.getElementById("paramR").value = "";
+        document.getElementById("paramH_s").value = "";
+        document.getElementById("paramR_w").value = "";
+        document.getElementById("paramH_w").value = "";
+        document.getElementById("paramR_k").value = "";
+
+        // Ustawiamy odpowiednie pola na widoczne
+        if (type === "prostopadloscian") {
+          document.getElementById("inputs_p").style.display = "inline-block";
+          document.getElementById("inputs_s").style.display = "none";
+          document.getElementById("inputs_w").style.display = "none";
+          document.getElementById("inputs_k").style.display = "none";
+        } else if (type === "stozek") {
+          document.getElementById("inputs_s").style.display = "inline-block";
+          document.getElementById("inputs_p").style.display = "none";
+          document.getElementById("inputs_w").style.display = "none";
+          document.getElementById("inputs_k").style.display = "none";
+        } else if (type === "walec") {
+          document.getElementById("inputs_s").style.display = "none";
+          document.getElementById("inputs_p").style.display = "none";
+          document.getElementById("inputs_w").style.display = "inline-block";
+          document.getElementById("inputs_k").style.display = "none";
+        } else if (type === "kula") {
+          document.getElementById("inputs_s").style.display = "none";
+          document.getElementById("inputs_p").style.display = "none";
+          document.getElementById("inputs_w").style.display = "none";
+          document.getElementById("inputs_k").style.display = "inline-block";
+        }
+      }
+
+      function calculateVolume() {
+        let paramA = parseFloat(document.getElementById("paramA").value);
+        let paramB = parseFloat(document.getElementById("paramB").value);
+        let paramH = parseFloat(document.getElementById("paramH").value);
+        let paramH_s = parseFloat(document.getElementById("paramH_s").value);
+        let paramR = parseFloat(document.getElementById("paramR").value);
+        let paramH_w = parseFloat(document.getElementById("paramH_w").value);
+        let paramR_w = parseFloat(document.getElementById("paramR_w").value);
+        let paramR_k = parseFloat(document.getElementById("paramR_k").value);
+        let volume;
+
+        switch (figureType) {
+          case "prostopadloscian":
+            volume = paramA * paramB * paramH;
+            break;
+          case "stozek":
+            volume = (1 / 3) * Math.PI * Math.pow(paramR, 2) * paramH_s;
+            break;
+          case "walec":
+            volume = Math.PI * Math.pow(paramR_w, 2) * paramH_w;
+            break;
+          case "kula":
+            volume = (4 / 3) * Math.PI * Math.pow(paramR_k, 3);
+            break;
+          default:
+            volume = "Blad w obliczeniach";
+        }
+
+        if (!isNaN(volume)) {
+          document.getElementById("display").innerHTML =
+            "Objetosc: " + volume.toFixed(2) + " jednostki szescienne";
+        } else {
+          document.getElementById("display").innerHTML =
+            "Wprowadz poprawne wartosci.";
+        }
+      }
+
+      function displayText(text) {
+        document.getElementById("display").innerHTML = text;
+      }
+
+      function Wyczysc() {
+        document.getElementById("paramA").value = "";
+        document.getElementById("paramB").value = "";
+        document.getElementById("paramH").value = "";
+        document.getElementById("paramR").value = "";
+        document.getElementById("paramH_s").value = "";
+        document.getElementById("paramR_w").value = "";
+        document.getElementById("paramH_w").value = "";
+        document.getElementById("paramR_k").value = "";
+        document.getElementById("display").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
