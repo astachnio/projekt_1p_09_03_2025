@@ -1,139 +1,125 @@
 #main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 700px;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  width: 100%;
 }
 #back {
-    background-color: red;
-    border-radius: 37.5px;
-    height: 75px;
-    width: 75px;
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
+  background-color: red;
+  border-radius: 37.5px;
+  height: 75px;
+  width: 75px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#refresh {
-    background-color: rgb(34, 255, 0);
-    border-radius: 37.5px;
-    height: 75px;
-    width: 75px;
-    position: fixed;
-    right: 95px;
-    top: 10px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    cursor: pointer;
+
+#back a {
+  padding: 12px;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  text-decoration: none;
 }
-#back a,#refresh a {
-    padding:12px;
-    text-align: center;
-    font-size: 50px;
-    color: white;
-    text-decoration: none;
+#back:hover {
+  background-color: rgb(211, 0, 0);
 }
-#back:hover {  
-    background-color: rgb(211, 0, 0);
-}
-#refresh:hover {  
-    background-color: rgb(28, 206, 0);
-}
+
 .nodisplay {
-    opacity: 0;
-    cursor: default;
+  opacity: 0;
+  cursor: default;
 }
 #kalk {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    height: 650px;
-    width: 400px;
-    background-color: rgb(183, 183, 183);
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 3px solid rgb(0, 0, 0);
-    box-shadow: 3px 4px 20px rgb(0, 0, 0);
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: 650px;
+  width: 400px;
+  background-color: rgb(183, 183, 183);
+  border-radius: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 3px solid rgb(0, 0, 0);
+  box-shadow: 3px 4px 20px rgb(0, 0, 0);
 }
 #kalk #buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 #header {
-    margin: 12px;
-    height: 100px;
-    font-size: 25px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 12px;
+  height: 100px;
+  font-size: 25px;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 #header p {
-    font-weight: bold;
+  font-weight: bold;
 }
 @font-face {
-    font-family: 'digital-7';
-    src: url('font/digital-7.ttf') format('truetype');
+  font-family: "digital-7";
+  src: url("font/digital-7.ttf") format("truetype");
 }
 #display {
-    font-family: 'digital-7', sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    background-color: white;
-    text-align: center;
-    height: 75px;
-    width: 80%;
-    border-radius: 15px;
-    text-wrap: wrap;
-    border: 3px solid white;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  font-family: "digital-7", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  background-color: white;
+  text-align: center;
+  height: 75px;
+  width: 80%;
+  border-radius: 15px;
+  text-wrap: wrap;
+  border: 3px solid white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 #display marquee {
-    font-size: 70px;
+  font-size: 70px;
 }
 .button {
-    width: 80px;
-    height: 80px;
-    background-color: rgb(122, 122, 122);
-    color: white;
-    font-size: 64px;
-    text-align: center;
-    border-radius: 20px;
-    border: 2px solid white;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: rgb(122, 122, 122);
+  color: white;
+  font-size: 64px;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .button:hover {
-    background-color: rgb(53, 53, 53);
-    cursor: pointer;
-    transform: scale(1.05);
+  background-color: rgb(53, 53, 53);
+  cursor: pointer;
+  transform: scale(1.05);
 }
 .button a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 @keyframes display {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  0% {
+    opacity: 0;
   }
-  input {
-    width: 90%;
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  100% {
+    opacity: 1;
+  }
+}
+input {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
